@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tdayde <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 16:56:03 by tdayde            #+#    #+#             */
-/*   Updated: 2021/01/08 18:59:25 by tdayde           ###   ########lyon.fr   */
+/*   Created: 2020/11/24 15:31:08 by tdayde            #+#    #+#             */
+/*   Updated: 2020/11/24 17:27:26 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*dest;
-	int		i;
+	size_t	i;
+	void	*target;
 
-	if ((dest = malloc(sizeof(char) * ft_strlen(s) + 1)) == NULL)
-		return (NULL);
 	i = 0;
-	while (s[i])
-	{
-		dest[i] = s[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	target = (void *)malloc(size * count);
+	if (target == NULL)
+		return (NULL);
+	ft_bzero(target, (count * size));
+	return (target);
 }

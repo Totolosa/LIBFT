@@ -34,8 +34,7 @@ SRCS		= 	ft_memset.c\
 				ft_putstr_fd.c\
 				ft_putendl_fd.c\
 				ft_putnbr_fd.c\
-
-BONUS		=	ft_lstnew.c\
+				ft_lstnew.c\
 				ft_lstadd_front.c\
 				ft_lstsize.c\
 				ft_lstlast.c\
@@ -44,14 +43,16 @@ BONUS		=	ft_lstnew.c\
 				ft_lstclear.c\
 				ft_lstiter.c\
 				ft_lstmap.c\
-
-BONUS_OBJS	= $(BONUS:.c=.o)
+				get_next_line.c\
+				get_next_line_utils.c\
 
 OBJS		= $(SRCS:.c=.o)
 
 CC          = gcc
 
-CFLAGS      = -Wall -Werror -Wextra -I. -c
+CFLAGS      = -Wall -Werror -Wextra
+
+INCLUDE		= -Iinclude
 
 RM          = rm -f
 
@@ -60,18 +61,15 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			ar rcs $@ $^
 
-%.o:		%.c libft.h
-			$(CC) $(CFLAGS) $<
-
-bonus:		$(BONUS_OBJS)
-			ar rcs $(NAME)  $(BONUS_OBJS)
+%.o:		%.c #./include$(*.h)
+			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-			$(RM) $(OBJS) $(BONUS_OBJS)
+			$(RM) $(OBJS)
 
 fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
 
-.PHONY: 	clean fclean all re bonus
+.PHONY: 	clean fclean all re
