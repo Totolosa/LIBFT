@@ -45,14 +45,20 @@ SRCS		= 	ft_memset.c\
 				ft_lstmap.c\
 				get_next_line.c\
 				get_next_line_utils.c\
+				ft_alloc.c\
+				ft_count_words.c\
 
-OBJS		= $(SRCS:.c=.o)
+SRCS_PATH	= srcs/
+
+SRCS_LOC	= $(addprefix $(SRCS_PATH),$(SRCS))
+
+OBJS		= $(SRCS_LOC:.c=.o)
 
 CC          = gcc
 
 CFLAGS      = -Wall -Werror -Wextra
 
-INCLUDE		= -Iinclude
+INCLUDE		= include
 
 RM          = rm -f
 
@@ -61,8 +67,10 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			ar rcs $@ $^
 
-%.o:		%.c #./include$(*.h)
-			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+%.o:		%.c $(INCLUDE)/*.h
+			@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+			@printf "\033[2K\rcompilation $<"
+			
 
 clean:
 			$(RM) $(OBJS)
