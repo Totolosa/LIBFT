@@ -6,7 +6,7 @@
 /*   By: tdayde <tdayde@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:03:48 by tdayde            #+#    #+#             */
-/*   Updated: 2021/03/10 14:50:48 by tdayde           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 23:33:35 by tdayde           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
-	long int	result;
+	long long	result;
 
 	i = 0;
 	sign = 1;
